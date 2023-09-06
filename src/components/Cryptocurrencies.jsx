@@ -6,7 +6,6 @@ import millify from 'millify';
 import { useGetCoinsQuery } from '../services/cryptoApi';
 
 const Cryptocurrencies = ({ simplified }) => {
-  console.log(simplified);
   const count = simplified ? 10 : 100;
   const { data: cryptosList, isFetching } = useGetCoinsQuery(count);
   const [cryptos, setCryptos] = useState(cryptosList?.coins);
