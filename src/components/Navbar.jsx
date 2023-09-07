@@ -29,7 +29,7 @@ const menuItems = [
 ]
 
 const Navbar = () => {
-  const [activeMenu, setActiveMenu] = useState(true);
+  const [activeMenu, setActiveMenu] = useState(false);
   const [screenSize, setScreenSize] = useState(undefined);
 
   useEffect(() => {
@@ -43,11 +43,9 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    if (screenSize <= 800) {
-      setActiveMenu(false);
-    } else {
-      setActiveMenu(true);
-    }
+    (screenSize <= 800) 
+    ? setActiveMenu(false)
+    : setActiveMenu(true);
   }, [screenSize]);
 
   return (
@@ -60,8 +58,9 @@ const Navbar = () => {
         <Button className="menu-control-container" onClick={() => setActiveMenu(!activeMenu)}><MenuOutlined /></Button>
       </div>
 
-      <Menu items={menuItems} theme="dark">
-      </Menu>
+      {activeMenu && (
+        <Menu items={menuItems} theme="dark"></Menu>
+      )}
     </div>
   )
 }
